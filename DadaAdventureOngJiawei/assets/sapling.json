@@ -1,0 +1,140 @@
+{
+  "frames": [
+    {
+      "filename": "sapling-05",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 174,
+        "h": 231
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 47,
+        "y": 18,
+        "w": 174,
+        "h": 231
+      },
+      "sourceSize": {
+        "w": 268,
+        "h": 268
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "sapling-01",
+      "frame": {
+        "x": 0,
+        "y": 231,
+        "w": 173,
+        "h": 231
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 48,
+        "y": 18,
+        "w": 173,
+        "h": 231
+      },
+      "sourceSize": {
+        "w": 268,
+        "h": 268
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "sapling-03",
+      "frame": {
+        "x": 0,
+        "y": 462,
+        "w": 173,
+        "h": 231
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 47,
+        "y": 18,
+        "w": 173,
+        "h": 231
+      },
+      "sourceSize": {
+        "w": 267,
+        "h": 268
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "sapling-02",
+      "frame": {
+        "x": 0,
+        "y": 693,
+        "w": 140,
+        "h": 188
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 64,
+        "y": 40,
+        "w": 140,
+        "h": 188
+      },
+      "sourceSize": {
+        "w": 268,
+        "h": 268
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "sapling-04",
+      "frame": {
+        "x": 0,
+        "y": 881,
+        "w": 140,
+        "h": 188
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 64,
+        "y": 40,
+        "w": 140,
+        "h": 188
+      },
+      "sourceSize": {
+        "w": 268,
+        "h": 268
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.6",
+    "image": "sapling.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 174,
+      "h": 1069
+    },
+    "scale": 1
+  }
+}
