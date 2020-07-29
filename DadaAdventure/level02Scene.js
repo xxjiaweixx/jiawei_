@@ -146,7 +146,7 @@ class level02Scene extends Phaser.Scene {
             });
         
 
-            this.time.addEvent({ delay: 1000, callback: this.moveDownUp3, callbackScope: this, loop: false });
+            //this.time.addEvent({ delay: 1000, callback: this.moveDownUp3, callbackScope: this, loop: false });
             this.time.addEvent({ delay: 1000, callback: this.moveDownUp1, callbackScope: this, loop: false });
             this.time.addEvent({ delay: 1000, callback: this.moveDownUp2, callbackScope: this, loop: false });
 
@@ -209,7 +209,6 @@ class level02Scene extends Phaser.Scene {
             // Collide platform with sapling
             this.physics.add.collider(this.platformLayer, this.sapling);
             this.physics.add.collider(this.groundLayer, this.sapling);
-
 
             //overlap sapling
             this.physics.add.overlap(this.player, this.sapling1, this.collectSapling, null, this );
@@ -288,7 +287,7 @@ class level02Scene extends Phaser.Scene {
      } 
 
       // Check for reaching endPoint object
-      if ( this.player.x <= 14 && this.player.y >= 375 ) {
+      if ( this.player.x <= 20 && this.player.y >= 375 && this.score == 5 ) {
       console.log('Reached End, level03Scene');
       //this.cameras.main.shake(500);
       this.time.delayedCall(1000,function() {

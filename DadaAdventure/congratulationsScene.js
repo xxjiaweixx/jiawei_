@@ -18,8 +18,8 @@ class congratulationsScene extends Phaser.Scene {
         var spaceDown = this.input.keyboard.addKey('SPACE');
 
         spaceDown.on('down', function(){
-            console.log("Spacebar pressed, goto gameoverScene");
-            this.scene.start("gameoverScene");
+            console.log("Spacebar pressed, goto mainScene");
+            this.scene.start("mainScene");
             }, this );
 
     

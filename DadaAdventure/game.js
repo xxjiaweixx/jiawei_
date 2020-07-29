@@ -10,7 +10,7 @@
                     debug: true
                 }
         },
-        scene: [mainScene, storyline01Scene, storyline02Scene, storyline03Scene, instructions1Scene, instructions2Scene, RuleofTheGameScene, level01Scene, level02Scene, level03Scene,gameoverScene]
+        scene: [mainScene, storyline01Scene, storyline02Scene, storyline03Scene, instructions1Scene, instructions2Scene, RuleofTheGameScene, level01Scene, level02Scene, level03Scene,gameoverScene,congratulationsScene]
         };
         
         var game = new Phaser.Game(config);

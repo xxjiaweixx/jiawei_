@@ -154,7 +154,7 @@ class level01Scene extends Phaser.Scene {
          this.sapling2 = this.physics.add.sprite(450, 500, 'sapling').setScale(0.1).play('sapling');
          this.sapling3 = this.physics.add.sprite(720, 100, 'sapling').setScale(0.1).play('sapling');
          this.sapling4 = this.physics.add.sprite(950, 580, 'sapling').setScale(0.1).play('sapling');
-         this.sapling5 = this.physics.add.sprite(1190, 340, 'sapling').setScale(0.1).play('sapling');
+         this.sapling5 = this.physics.add.sprite(1150, 190, 'sapling').setScale(0.1).play('sapling');
 
          // Collide platform with sapling
          this.physics.add.collider(this.platformLayer, this.sapling);
@@ -241,7 +241,7 @@ class level01Scene extends Phaser.Scene {
      } 
 
       // Check for reaching endPoint object
-      if ( this.player.x >= 1170 && this.player.y >= 20 ) {
+      if ( this.player.x >= 1183 && this.player.y >= 20 && this.score == 5 ) {
       console.log('Reached End, level02Scene');
       //this.cameras.main.shake(500);
       this.time.delayedCall(1000,function() {

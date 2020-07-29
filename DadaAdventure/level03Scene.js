@@ -146,7 +146,7 @@ class level03Scene extends Phaser.Scene {
         });
         
 
-        this.time.addEvent({ delay: 1000, callback: this.moveDownUp1, callbackScope: this, loop: false });
+        
         
         ////// cow animation
         this.anims.create({
@@ -192,8 +192,9 @@ class level03Scene extends Phaser.Scene {
             repeat: -1
             });
 
-         
-         this.cow1 = this.physics.add.sprite(940, 55, 'cow').setScale(0.2).play('cow-front');
+            this.time.addEvent({ delay: 1000, callback: this.moveRightLeft1, callbackScope: this, loop: false });
+
+            this.cow1 = this.physics.add.sprite(550, 60, 'cow').setScale(0.2).play('cow-walk');
 
         ////// sapling animation
         this.anims.create({
@@ -297,33 +298,33 @@ class level03Scene extends Phaser.Scene {
      } 
 
        // Check for reaching endPoint object
-       if ( this.player.x <= 45 && this.player.y >= 75 ) {
-         console.log('Reached End, mainScene');
+       if ( this.player.x <= 45 && this.player.y >= 75 && this.score == 5 ) {
+         console.log('Reached End, congratulationsScene');
          //this.cameras.main.shake(500);
          this.time.delayedCall(1000,function() {
-          this.scene.start("mainScene");
+          this.scene.start("congratulationsScene");
          },[], this);
          }
         
     }
 
-    moveDownUp1() {
-      console.log('moveDownUp')
-      this.tweens.timeline({
-          targets: this.thief,
-          ease: 'Linear',
-          loop: -1, // loop forever
-          duration: 3000,
-          tweens: [
-          {
-              y: 230,
-          },
-          {
-              y: 55,
-          },
-      ]
-      });
-  }
+            moveRightLeft1() {
+            console.log('moveDownUp')
+            this.tweens.timeline({
+               targets: this.cow1,
+               loop: -1, // loop forever
+               ease: 'Linear',
+               duration: 3000,
+                tweens: [
+               {
+                  x: 900,
+               },
+                {
+                  x: 550,
+               },
+             ]
+             });
+            }
 
    collectSapling(player, sprite){
    console.log("Sapling collected");
