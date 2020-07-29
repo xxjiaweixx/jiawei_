@@ -5,6 +5,7 @@ class level03Scene extends Phaser.Scene {
    constructor ()
    {
        super({ key: 'level03Scene' });
+       this.score = 0
    }
 
 
@@ -24,13 +25,25 @@ class level03Scene extends Phaser.Scene {
       // player animations
       this.load.atlas('cow', 'assets/cow.png', 'assets/cow.json');
 
+      //mp3
+      this.load.audio('collect','assets/PowerUp18.mp3');
+      this.load.audio('bgmusic','assets/SummertimeFun.mp3');
+      this.load.audio('hit','assets/Clank3.mp3');
 
    }
 
    create() {
-      var map = this.make.tilemap({key: 'map3'});
+        var map = this.make.tilemap({key: 'map3'});
         var Tiles = map.addTilesetImage('tiled-32x32', 'tiles');
 
+        this.collectSnd = this.sound.add('collect');
+
+        this.hitSnd = this.sound.add('hit'),{volume: 100};
+        this.bgmusicSnd = this.sound.add('bgmusic');
+
+        this.bgmusicSnd.play();
+    
+        this.bgmusicSnd.loop = true;
         // groundLayer & platformLayer from Tiled
         this.groundLayer = map.createDynamicLayer('groundLayer', Tiles, 0, 0); 
         this.platformLayer = map.createDynamicLayer('platformLayer', Tiles, 0, 0);  
@@ -197,11 +210,37 @@ class level03Scene extends Phaser.Scene {
          repeat: -1
          });
 
-         this.sapling = this.physics.add.sprite(1030, 80, 'sapling').setScale(0.1).play('sapling');
-         this.sapling = this.physics.add.sprite(920, 550, 'sapling').setScale(0.1).play('sapling');
-         this.sapling = this.physics.add.sprite(285, 555, 'sapling').setScale(0.1).play('sapling');
-         this.sapling = this.physics.add.sprite(360, 270, 'sapling').setScale(0.1).play('sapling');
-         this.sapling = this.physics.add.sprite(60, 160, 'sapling').setScale(0.1).play('sapling');
+         this.sapling1 = this.physics.add.sprite(1030, 80, 'sapling').setScale(0.1).play('sapling');
+         this.sapling2 = this.physics.add.sprite(920, 550, 'sapling').setScale(0.1).play('sapling');
+         this.sapling3 = this.physics.add.sprite(285, 555, 'sapling').setScale(0.1).play('sapling');
+         this.sapling4 = this.physics.add.sprite(360, 270, 'sapling').setScale(0.1).play('sapling');
+         this.sapling5 = this.physics.add.sprite(60, 160, 'sapling').setScale(0.1).play('sapling');
+
+         // Collide platform with sapling
+         this.physics.add.collider(this.platformLayer, this.sapling);
+         this.physics.add.collider(this.groundLayer, this.sapling);
+
+
+         //overlap sapling
+         this.physics.add.overlap(this.player, this.sapling1, this.collectSapling, null, this );
+         this.physics.add.overlap(this.player, this.sapling2, this.collectSapling, null, this );
+         this.physics.add.overlap(this.player, this.sapling3, this.collectSapling, null, this );
+         this.physics.add.overlap(this.player, this.sapling4, this.collectSapling, null, this );
+         this.physics.add.overlap(this.player, this.sapling5, this.collectSapling, null, this );
+
+         //overlap Cow
+         this.physics.add.overlap(this.player, this.cow1, this.hitCow, null, this );
+
+
+         // this text will show the score
+         this.saplingText = this.add.text(650, 50, this.score, {
+            fontSize: '30px',
+            fill: '#221C48'
+            });
+   
+            // fix the text to the camera
+            this.saplingText.setScrollFactor(0);
+            this.saplingText.visible = true;
 
 
         // Create the cursor keys
@@ -286,12 +325,31 @@ class level03Scene extends Phaser.Scene {
       });
   }
 
-    collectCoin(sprite, tile){
-      console.log("Coin collected");
-      this.coinLayer.removeTileAt(tile.x, tile.y); // remove the coin when overlap
-         
-      return false;
-      }
+   collectSapling(player, sprite){
+   console.log("Sapling collected");
+   this.score = this.score + 1 ;
+   this.collectSnd.play();
+   this.saplingText.setText(this.score);
+   sprite.disableBody (true, true);
+
+   return false;
+   }
+
+   hitCow(player, sprite){
+   console.log("hitRobot");
+      
+   sprite.disableBody (true, true);
+   this.bgmusicSnd.loop = false
+   this.bgmusicSnd.stop();
+   this.hitSnd.play();
+   this.time.delayedCall(500,function() {
+   this.score = 0
+   this.scene.start("gameoverScene");
+   },[], this);
+   
+      
+   return false;
+   }
 
 
 }

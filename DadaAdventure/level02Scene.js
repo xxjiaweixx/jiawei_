@@ -5,6 +5,7 @@ class level02Scene extends Phaser.Scene {
     constructor ()
     {
         super({ key: 'level02Scene' });
+        this.score = 0
     }
     
     preload(){
@@ -22,11 +23,25 @@ class level02Scene extends Phaser.Scene {
 
         this.load.atlas('robot', 'assets/robot.png', 'assets/robot.json');
 
+        //mp3
+        this.load.audio('collect','assets/PowerUp18.mp3');
+        this.load.audio('bgmusic','assets/SummertimeFun.mp3');
+        this.load.audio('hit','assets/Clank3.mp3');
+
     }
 
     create() {
         var map = this.make.tilemap({key: 'map2'});
         var Tiles = map.addTilesetImage('tiled-32x32', 'tiles');
+
+        this.collectSnd = this.sound.add('collect');
+
+        this.hitSnd = this.sound.add('hit'),{volume: 100};
+        this.bgmusicSnd = this.sound.add('bgmusic');
+
+        this.bgmusicSnd.play();
+    
+        this.bgmusicSnd.loop = true;
 
         // groundLayer & platformLayer from Tiled
         this.groundLayer = map.createDynamicLayer('groundLayer', Tiles, 0, 0); 
@@ -67,107 +82,108 @@ class level02Scene extends Phaser.Scene {
    
 
 
-        // player walk animation
-        this.anims.create({
-        key:'walk',
-        frames:[
-        {key: 'player', frame: 'walk-01'},
-        {key: 'player', frame: 'walk-02'},
-        {key: 'player', frame: 'walk-03'},
-        {key: 'player', frame: 'walk-04'},
-        {key: 'player', frame: 'walk-05'},
-        ],
+            // player walk animation
+            this.anims.create({
+            key:'walk',
+            frames:[
+            {key: 'player', frame: 'walk-01'},
+            {key: 'player', frame: 'walk-02'},
+            {key: 'player', frame: 'walk-03'},
+            {key: 'player', frame: 'walk-04'},
+            {key: 'player', frame: 'walk-05'},
+            ],
     
-        frameRate:10,
-        repeat: -1
-        });
+            frameRate:10,
+            repeat: -1
+            });
 
-        this.anims.create({
-        key:'walk',
-        frames: [{key:'player', frame:'walk-01'}],
-        frameRate:10,
-        });
+            this.anims.create({
+            key:'walk',
+            frames: [{key:'player', frame:'walk-01'}],
+            frameRate:10,
+            });
 
-        this.anims.create({
-        key:'back',
-        frames:[
-        {key: 'player', frame: 'back-01'},
-        {key: 'player', frame: 'back-02'},
-        {key: 'player', frame: 'back-03'},
-        {key: 'player', frame: 'back-04'},
-        {key: 'player', frame: 'back-05'},
-        ],
+            this.anims.create({
+            key:'back',
+            frames:[
+            {key: 'player', frame: 'back-01'},
+            {key: 'player', frame: 'back-02'},
+            {key: 'player', frame: 'back-03'},
+            {key: 'player', frame: 'back-04'},
+            {key: 'player', frame: 'back-05'},
+            ],
     
-        frameRate:10,
-        repeat: -1
-        });
+            frameRate:10,
+            repeat: -1
+            });
 
-        this.anims.create({
-         key:'back',
-        frames: [{key:'player', frame:'back-01'}],
-        frameRate:10,
-        });
+            this.anims.create({
+            key:'back',
+            frames: [{key:'player', frame:'back-01'}],
+            frameRate:10,
+            });
 
-        this.anims.create({
-        key:'front',
-        frames:[
-        {key: 'player', frame: 'front-01'},
-        {key: 'player', frame: 'front-02'},
-        {key: 'player', frame: 'front-03'},
-        {key: 'player', frame: 'front-04'},
-        {key: 'player', frame: 'front-05'},
-        ],
+            this.anims.create({
+            key:'front',
+            frames:[
+            {key: 'player', frame: 'front-01'},
+            {key: 'player', frame: 'front-02'},
+            {key: 'player', frame: 'front-03'},
+            {key: 'player', frame: 'front-04'},
+            {key: 'player', frame: 'front-05'},
+            ],
     
-        frameRate:10,
-        repeat: -1
-        });
-        // idle with only one frame, so repeat is not needed
+            frameRate:10,
+            repeat: -1
+            });
+            // idle with only one frame, so repeat is not needed
     
 
-        this.anims.create({
-        key:'front',
-        frames: [{key:'player', frame:'front-01'}],
-        frameRate:10,
-        });
+            this.anims.create({
+            key:'front',
+            frames: [{key:'player', frame:'front-01'}],
+            frameRate:10,
+            });
         
 
-        this.time.addEvent({ delay: 1000, callback: this.moveDownUp, callbackScope: this, loop: false });
-        this.time.addEvent({ delay: 1000, callback: this.moveDownUp1, callbackScope: this, loop: false });
-        this.time.addEvent({ delay: 1000, callback: this.moveDownUp2, callbackScope: this, loop: false });
+            this.time.addEvent({ delay: 1000, callback: this.moveDownUp3, callbackScope: this, loop: false });
+            this.time.addEvent({ delay: 1000, callback: this.moveDownUp1, callbackScope: this, loop: false });
+            this.time.addEvent({ delay: 1000, callback: this.moveDownUp2, callbackScope: this, loop: false });
 
-        ////// robot walk animation
-         this.anims.create({
-         key:'robot-back',
-         frames:[
-         {key: 'robot', frame: 'robot-back01'},
-         {key: 'robot', frame: 'robot-back02'},
-         {key: 'robot', frame: 'robot-back03'},
-         {key: 'robot', frame: 'robot-back04'},
-         {key: 'robot', frame: 'robot-back05'},
-         ],
+            ////// robot walk animation
+            this.anims.create({
+            key:'robot-back',
+            frames:[
+            {key: 'robot', frame: 'robot-back01'},
+            {key: 'robot', frame: 'robot-back02'},
+            {key: 'robot', frame: 'robot-back03'},
+            {key: 'robot', frame: 'robot-back04'},
+            {key: 'robot', frame: 'robot-back05'},
+            ],
      
-         frameRate:10,
-         repeat: -1
-         });
+            frameRate:10,
+            repeat: -1
+            });
          
          
-         this.anims.create({
-         key:'robot-front',
-         frames:[
-         {key: 'robot', frame: 'robot-front01'},
-         {key: 'robot', frame: 'robot-front02'},
-         {key: 'robot', frame: 'robot-front03'},
-         {key: 'robot', frame: 'robot-front04'},
-         {key: 'robot', frame: 'robot-front05'},
-         ],
+            this.anims.create({
+            key:'robot-front',
+            frames:[
+            {key: 'robot', frame: 'robot-front01'},
+            {key: 'robot', frame: 'robot-front02'},
+            {key: 'robot', frame: 'robot-front03'},
+            {key: 'robot', frame: 'robot-front04'},
+            {key: 'robot', frame: 'robot-front05'},
+            ],
      
-         frameRate:10,
-         repeat: -1
-         });
+            frameRate:10,
+             repeat: -1
+            });
      
-         this.robot1 = this.physics.add.sprite(350, 60, 'robot').setScale(0.2).play('robot-front');
-         this.robot2 = this.physics.add.sprite(70, 570, 'robot').setScale(0.2).play('robot-back');
-         this.robot3 = this.physics.add.sprite(800, 355, 'robot').setScale(0.2).play('robot-back');
+         
+            this.robot1 = this.physics.add.sprite(70, 570, 'robot').setScale(0.2).play('robot-back');
+            this.robot2 = this.physics.add.sprite(800, 355, 'robot').setScale(0.2).play('robot-back');
+            //this.robot3 = this.physics.add.sprite(350, 60, 'robot').setScale(0.2).play('robot-front');
          
 
          ////// sapling animation
@@ -184,33 +200,56 @@ class level02Scene extends Phaser.Scene {
             frameRate:10,
             repeat: -1
             });
-            this.sapling = this.physics.add.sprite(940, 70, 'sapling').setScale(0.1).play('sapling');
-            this.sapling = this.physics.add.sprite(1060, 570, 'sapling').setScale(0.1).play('sapling');
-            this.sapling = this.physics.add.sprite(320, 570, 'sapling').setScale(0.1).play('sapling');
-            this.sapling = this.physics.add.sprite(260, 260, 'sapling').setScale(0.1).play('sapling');
-            this.sapling = this.physics.add.sprite(830, 500, 'sapling').setScale(0.1).play('sapling');
+            this.sapling1 = this.physics.add.sprite(940, 70, 'sapling').setScale(0.1).play('sapling');
+            this.sapling2 = this.physics.add.sprite(1060, 570, 'sapling').setScale(0.1).play('sapling');
+            this.sapling3 = this.physics.add.sprite(320, 570, 'sapling').setScale(0.1).play('sapling');
+            this.sapling4 = this.physics.add.sprite(260, 260, 'sapling').setScale(0.1).play('sapling');
+            this.sapling5 = this.physics.add.sprite(830, 500, 'sapling').setScale(0.1).play('sapling');
 
-            //overlap
+            // Collide platform with sapling
+            this.physics.add.collider(this.platformLayer, this.sapling);
+            this.physics.add.collider(this.groundLayer, this.sapling);
+
+
+            //overlap sapling
+            this.physics.add.overlap(this.player, this.sapling1, this.collectSapling, null, this );
+            this.physics.add.overlap(this.player, this.sapling2, this.collectSapling, null, this );
+            this.physics.add.overlap(this.player, this.sapling3, this.collectSapling, null, this );
+            this.physics.add.overlap(this.player, this.sapling4, this.collectSapling, null, this );
+            this.physics.add.overlap(this.player, this.sapling5, this.collectSapling, null, this );
+
+            //overlap robot
             this.physics.add.overlap(this.player, this.robot1, this.hitRobot, null, this );
+            this.physics.add.overlap(this.player, this.robot2, this.hitRobot, null, this );
+           //this.physics.add.overlap(this.player, this.robot3, this.hitRobot, null, this );
 
+            // this text will show the score
+            this.saplingText = this.add.text(650, 50, this.score, {
+            fontSize: '30px',
+            fill: '#221C48'
+            });
+   
+            // fix the text to the camera
+            this.saplingText.setScrollFactor(0);
+            this.saplingText.visible = true;
 
-        // Create the cursor keys
-        this.cursors = this.input.keyboard.createCursorKeys();
+            // Create the cursor keys
+            this.cursors = this.input.keyboard.createCursorKeys();
 
-        // set bounds so the camera won't go outside the game world
-        this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+            // set bounds so the camera won't go outside the game world
+            this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
-        // make the camera follow the player
-        this.cameras.main.startFollow(this.player);
+            // make the camera follow the player
+            this.cameras.main.startFollow(this.player);
 
-        // set background color, so the sky is not black
-        this.cameras.main.setBackgroundColor('#ccccff');
+            // set background color, so the sky is not black
+            this.cameras.main.setBackgroundColor('#ccccff');
 
-        this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+            this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
-        this.cameras.main.startFollow(this.player);
+            this.cameras.main.startFollow(this.player);
 
-        this.cameras.main.setBackgroundColor('#ccccff');
+            this.cameras.main.setBackgroundColor('#ccccff');
 
 
     }
@@ -259,23 +298,7 @@ class level02Scene extends Phaser.Scene {
 
     }
 
-    moveDownUp() {
-        console.log('moveDownUp')
-        this.tweens.timeline({
-            targets: this.robot,
-            ease: 'Linear',
-            loop: -1, // loop forever
-            duration: 3000,
-            tweens: [
-            {
-                y: 440,
-            },
-            {
-                y: 60,
-            },
-        ]
-        });
-     }
+    
 
      moveDownUp1() {
         console.log('moveDownUp')
@@ -295,47 +318,67 @@ class level02Scene extends Phaser.Scene {
         });
      }
 
-   moveDownUp2() {
-    console.log('moveDownUp')
-    this.tweens.timeline({
-        targets: this.robot2,
-        ease: 'Linear',
-        loop: -1, // loop forever
-        duration: 3000,
-        tweens: [
-        {
-            y: 171,
-        },
-        {
-            y: 355,
-        },
-    ]
-    });
- }
+      moveDownUp2() {
+        console.log('moveDownUp')
+        this.tweens.timeline({
+            targets: this.robot2,
+            ease: 'Linear',
+            loop: -1, // loop forever
+            duration: 3000,
+            tweens: [
+            {
+                y: 171,
+            },
+            {
+                y: 355,
+            },
+        ]
+        });
+     }
+    //     moveDownUp3() {
+    //         console.log('moveDownUp')
+    //         this.tweens.timeline({
+    //         targets: this.robot,
+    //         ease: 'Linear',
+    //         loop: -1, // loop forever
+    //         duration: 3000,
+    //         tweens: [
+    //         {
+    //             y: 440,
+    //         },
+    //         {
+    //             y: 60,
+    //         },
+    //     ]
+    //     });
+    //  }
 
 
         collectSapling(player, sprite){
         console.log("Sapling collected");
         this.score = this.score + 1 ;
+        this.collectSnd.play();
         this.saplingText.setText(this.score);
         sprite.disableBody (true, true);
     
-       
         return false;
         }
 
         hitRobot(player, sprite){
-            console.log("hitRobot");
+        console.log("hitRobot");
            
-            sprite.disableBody (true, true);
-            this.time.delayedCall(500,function() {
-                this.score = 0
-                this.scene.start("gameoverScene");
-                },[], this);
+        sprite.disableBody (true, true);
+        this.bgmusicSnd.loop = false
+        this.bgmusicSnd.stop();
+        this.hitSnd.play();
+        this.time.delayedCall(500,function() {
+        this.score = 0
+        this.scene.start("gameoverScene");
+        },[], this);
         
            
-            return false;
-            }
+        return false;
+        }
        
 
 }

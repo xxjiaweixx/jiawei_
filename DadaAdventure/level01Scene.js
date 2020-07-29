@@ -160,7 +160,7 @@ class level01Scene extends Phaser.Scene {
          this.physics.add.collider(this.platformLayer, this.sapling);
          this.physics.add.collider(this.groundLayer, this.sapling);
 
-         //this.physics.add.overlap(this.stars, this.bombs, this.removeBombs, null, this );
+         //overlap sapling
          this.physics.add.overlap(this.player, this.sapling1, this.collectSapling, null, this );
          this.physics.add.overlap(this.player, this.sapling2, this.collectSapling, null, this );
          this.physics.add.overlap(this.player, this.sapling3, this.collectSapling, null, this );
@@ -170,7 +170,7 @@ class level01Scene extends Phaser.Scene {
         
 
          // this text will show the score
-         this.saplingText = this.add.text(620, 50, this.score, {
+         this.saplingText = this.add.text(650, 50, this.score, {
          fontSize: '30px',
          fill: '#221C48'
          });
@@ -254,10 +254,10 @@ class level01Scene extends Phaser.Scene {
       collectSapling(player, sprite){
       console.log("Sapling collected");
       this.score = this.score + 1 ;
+      this.collectSnd.play();
       this.saplingText.setText(this.score);
       sprite.disableBody (true, true);
       
-         
       return false;
       }
 
