@@ -1,0 +1,265 @@
+{
+  "frames": [
+    {
+      "filename": "robot-back04",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 112,
+        "h": 169
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 11,
+        "y": 84,
+        "w": 112,
+        "h": 169
+      },
+      "sourceSize": {
+        "w": 134,
+        "h": 267
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "robot-front02",
+      "frame": {
+        "x": 0,
+        "y": 169,
+        "w": 112,
+        "h": 169
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 11,
+        "y": 84,
+        "w": 112,
+        "h": 169
+      },
+      "sourceSize": {
+        "w": 134,
+        "h": 267
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "robot-back02",
+      "frame": {
+        "x": 0,
+        "y": 338,
+        "w": 111,
+        "h": 169
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 12,
+        "y": 84,
+        "w": 111,
+        "h": 169
+      },
+      "sourceSize": {
+        "w": 135,
+        "h": 267
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "robot-front04",
+      "frame": {
+        "x": 0,
+        "y": 507,
+        "w": 111,
+        "h": 169
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 12,
+        "y": 84,
+        "w": 111,
+        "h": 169
+      },
+      "sourceSize": {
+        "w": 134,
+        "h": 267
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "robot-back01",
+      "frame": {
+        "x": 0,
+        "y": 676,
+        "w": 113,
+        "h": 167
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 11,
+        "y": 86,
+        "w": 113,
+        "h": 167
+      },
+      "sourceSize": {
+        "w": 135,
+        "h": 267
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "robot-back03",
+      "frame": {
+        "x": 111,
+        "y": 338,
+        "w": 113,
+        "h": 167
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 11,
+        "y": 86,
+        "w": 113,
+        "h": 167
+      },
+      "sourceSize": {
+        "w": 134,
+        "h": 267
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "robot-back05",
+      "frame": {
+        "x": 111,
+        "y": 505,
+        "w": 113,
+        "h": 167
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 11,
+        "y": 86,
+        "w": 113,
+        "h": 167
+      },
+      "sourceSize": {
+        "w": 135,
+        "h": 267
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "robot-front01",
+      "frame": {
+        "x": 112,
+        "y": 0,
+        "w": 113,
+        "h": 167
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 11,
+        "y": 86,
+        "w": 113,
+        "h": 167
+      },
+      "sourceSize": {
+        "w": 135,
+        "h": 267
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "robot-front03",
+      "frame": {
+        "x": 112,
+        "y": 167,
+        "w": 113,
+        "h": 167
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 11,
+        "y": 86,
+        "w": 113,
+        "h": 167
+      },
+      "sourceSize": {
+        "w": 134,
+        "h": 267
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "robot-front05",
+      "frame": {
+        "x": 0,
+        "y": 843,
+        "w": 113,
+        "h": 167
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 10,
+        "y": 86,
+        "w": 113,
+        "h": 167
+      },
+      "sourceSize": {
+        "w": 134,
+        "h": 267
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.6",
+    "image": "robot.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 225,
+      "h": 1010
+    },
+    "scale": 1
+  }
+}
