@@ -7,7 +7,7 @@
                 default: 'arcade',
                 arcade: {
                     gravity: {y: 0},
-                    debug: true
+                    debug: false
                 }
         },
         scene: [mainScene, storyline01Scene, storyline02Scene, storyline03Scene, instructions1Scene, instructions2Scene, RuleofTheGameScene, level01Scene, level02Scene, level03Scene,gameoverScene,congratulationsScene]

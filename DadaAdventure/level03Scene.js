@@ -193,8 +193,10 @@ class level03Scene extends Phaser.Scene {
             });
 
             this.time.addEvent({ delay: 1000, callback: this.moveRightLeft1, callbackScope: this, loop: false });
+            this.time.addEvent({ delay: 1000, callback: this.moveRightLeft2, callbackScope: this, loop: false });
 
             this.cow1 = this.physics.add.sprite(550, 60, 'cow').setScale(0.2).play('cow-walk');
+            this.cow2 = this.physics.add.sprite(430, 480, 'cow').setScale(0.2).play('cow-walk');
 
         ////// sapling animation
         this.anims.create({
@@ -231,6 +233,7 @@ class level03Scene extends Phaser.Scene {
 
          //overlap Cow
          this.physics.add.overlap(this.player, this.cow1, this.hitCow, null, this );
+         this.physics.add.overlap(this.player, this.cow2, this.hitCow, null, this );
 
 
          // this text will show the score
@@ -298,7 +301,7 @@ class level03Scene extends Phaser.Scene {
      } 
 
        // Check for reaching endPoint object
-       if ( this.player.x <= 45 && this.player.y >= 75 && this.score == 5 ) {
+       if ( this.player.x <= 63 && this.player.y >= 20 && this.score == 5 ) {
          console.log('Reached End, congratulationsScene');
          //this.cameras.main.shake(500);
          this.time.delayedCall(1000,function() {
@@ -326,6 +329,25 @@ class level03Scene extends Phaser.Scene {
              });
             }
 
+            
+            moveRightLeft2() {
+               console.log('moveDownUp')
+               this.tweens.timeline({
+                  targets: this.cow2,
+                  loop: -1, // loop forever
+                  ease: 'Linear',
+                  duration: 3000,
+                   tweens: [
+                  {
+                     x: 650,
+                  },
+                   {
+                     x: 430,
+                  },
+                ]
+                });
+               }
+
    collectSapling(player, sprite){
    console.log("Sapling collected");
    this.score = this.score + 1 ;
@@ -337,7 +359,7 @@ class level03Scene extends Phaser.Scene {
    }
 
    hitCow(player, sprite){
-   console.log("hitRobot");
+   console.log("hitCow");
       
    sprite.disableBody (true, true);
    this.bgmusicSnd.loop = false
