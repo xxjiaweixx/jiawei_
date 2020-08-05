@@ -41,11 +41,12 @@ class level03Scene extends Phaser.Scene {
         this.hitSnd = this.sound.add('hit'),{volume: 100};
         this.bgmusicSnd = this.sound.add('bgmusic');
 
-        window.music3 = this.bgmusicSnd;
+        window.music1 = this.bgmusicSnd;
 
-        this.bgmusicSnd.play();
+        window.music1.play();
     
-        this.bgmusicSnd.loop = true;
+        window.music1.loop = true;
+        
         // groundLayer & platformLayer from Tiled
         this.groundLayer = map.createDynamicLayer('groundLayer', Tiles, 0, 0); 
         this.platformLayer = map.createDynamicLayer('platformLayer', Tiles, 0, 0);  
@@ -305,9 +306,10 @@ class level03Scene extends Phaser.Scene {
        // Check for reaching endPoint object
        if ( this.player.x <= 63 && this.player.y >= 20 && this.score == 5 ) {
          console.log('Reached End, congratulationsScene');
+         window.music1.stop();
          //this.cameras.main.shake(500);
          this.time.delayedCall(1000,function() {
-          this.scene.start("congratulationsScene");this.bgmusicSnd.stop();
+          this.scene.start("congratulationsScene");
          },[], this);
          }
         
