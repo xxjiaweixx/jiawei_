@@ -39,6 +39,8 @@ class level01Scene extends Phaser.Scene {
          this.hitSnd = this.sound.add('hit'),{volume: 100};
          this.bgmusicSnd = this.sound.add('bgmusic');
 
+         window.music1 = this.bgmusicSnd;
+
          this.bgmusicSnd.play();
     
          this.bgmusicSnd.loop = true;
