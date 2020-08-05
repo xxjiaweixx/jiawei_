@@ -195,8 +195,8 @@ class level03Scene extends Phaser.Scene {
             this.time.addEvent({ delay: 1000, callback: this.moveRightLeft1, callbackScope: this, loop: false });
             this.time.addEvent({ delay: 1000, callback: this.moveRightLeft2, callbackScope: this, loop: false });
 
-            this.cow1 = this.physics.add.sprite(550, 60, 'cow').setScale(0.2).play('cow-walk');
-            this.cow2 = this.physics.add.sprite(430, 480, 'cow').setScale(0.2).play('cow-walk');
+            this.cow1 = this.physics.add.sprite(550, 60, 'cow').setScale(0.3).play('cow-walk');
+            this.cow2 = this.physics.add.sprite(430, 480, 'cow').setScale(0.3).play('cow-walk');
 
         ////// sapling animation
         this.anims.create({
@@ -213,11 +213,11 @@ class level03Scene extends Phaser.Scene {
          repeat: -1
          });
 
-         this.sapling1 = this.physics.add.sprite(1030, 80, 'sapling').setScale(0.1).play('sapling');
-         this.sapling2 = this.physics.add.sprite(920, 550, 'sapling').setScale(0.1).play('sapling');
-         this.sapling3 = this.physics.add.sprite(285, 555, 'sapling').setScale(0.1).play('sapling');
-         this.sapling4 = this.physics.add.sprite(360, 270, 'sapling').setScale(0.1).play('sapling');
-         this.sapling5 = this.physics.add.sprite(60, 160, 'sapling').setScale(0.1).play('sapling');
+         this.sapling1 = this.physics.add.sprite(1030, 80, 'sapling').setScale(0.15).play('sapling');
+         this.sapling2 = this.physics.add.sprite(920, 550, 'sapling').setScale(0.15).play('sapling');
+         this.sapling3 = this.physics.add.sprite(285, 555, 'sapling').setScale(0.15).play('sapling');
+         this.sapling4 = this.physics.add.sprite(360, 270, 'sapling').setScale(0.15).play('sapling');
+         this.sapling5 = this.physics.add.sprite(60, 160, 'sapling').setScale(0.15).play('sapling');
 
          // Collide platform with sapling
          this.physics.add.collider(this.platformLayer, this.sapling);
@@ -305,7 +305,7 @@ class level03Scene extends Phaser.Scene {
          console.log('Reached End, congratulationsScene');
          //this.cameras.main.shake(500);
          this.time.delayedCall(1000,function() {
-          this.scene.start("congratulationsScene");
+          this.scene.start("congratulationsScene");this.bgmusicSnd.stop();
          },[], this);
          }
         

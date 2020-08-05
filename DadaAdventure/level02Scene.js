@@ -200,11 +200,11 @@ class level02Scene extends Phaser.Scene {
             frameRate:10,
             repeat: -1
             });
-            this.sapling1 = this.physics.add.sprite(940, 70, 'sapling').setScale(0.1).play('sapling');
-            this.sapling2 = this.physics.add.sprite(1060, 570, 'sapling').setScale(0.1).play('sapling');
-            this.sapling3 = this.physics.add.sprite(320, 570, 'sapling').setScale(0.1).play('sapling');
-            this.sapling4 = this.physics.add.sprite(260, 260, 'sapling').setScale(0.1).play('sapling');
-            this.sapling5 = this.physics.add.sprite(830, 500, 'sapling').setScale(0.1).play('sapling');
+            this.sapling1 = this.physics.add.sprite(940, 70, 'sapling').setScale(0.15).play('sapling');
+            this.sapling2 = this.physics.add.sprite(1060, 570, 'sapling').setScale(0.15).play('sapling');
+            this.sapling3 = this.physics.add.sprite(320, 570, 'sapling').setScale(0.15).play('sapling');
+            this.sapling4 = this.physics.add.sprite(260, 260, 'sapling').setScale(0.15).play('sapling');
+            this.sapling5 = this.physics.add.sprite(830, 500, 'sapling').setScale(0.15).play('sapling');
 
             // Collide platform with sapling
             this.physics.add.collider(this.platformLayer, this.sapling);
@@ -291,7 +291,7 @@ class level02Scene extends Phaser.Scene {
       console.log('Reached End, level03Scene');
       //this.cameras.main.shake(500);
       this.time.delayedCall(1000,function() {
-       this.scene.start("level03Scene");
+       this.scene.start("level03Scene");this.bgmusicSnd.stop();
       },[], this);
       }
 
